@@ -2,6 +2,10 @@
 
 This API uses **FastAPI** to fetch data from Spotify, including top tracks, trending tracks, and popular artist tracks in Indonesia.
 
+## Deployment
+
+[link] (https://spotify-data-fetcher-api.vercel.app/)
+
 ## Features
 
 - **Top Tracks**: Fetches the top tracks from various playlists.
