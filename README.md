@@ -4,7 +4,7 @@ This API uses **FastAPI** to fetch data from Spotify, including top tracks, tren
 
 ## Deployment
 
-[link] (https://spotify-data-fetcher-api.vercel.app/)
+[link](https://spotify-data-fetcher-api.vercel.app/)
 
 ## Features
 
