@@ -2,14 +2,21 @@ from fastapi import FastAPI, HTTPException
 import httpx
 from dotenv import load_dotenv
 import os
+from mangum import Mangum
+from aiocache import Cache
+from aiocache.decorators import cached
 
 load_dotenv()
 
 app = FastAPI()
+handler = Mangum(app)
 
 CLIENT_ID = os.getenv('Client_ID')
 CLIENT_SECRET = os.getenv('Client_secret')
 
+cache = Cache(Cache.MEMORY)
+
+@cached(ttl=3600, cache=cache)
 async def get_access_token():
     auth_url = "https://accounts.spotify.com/api/token"
     async with httpx.AsyncClient() as client:
@@ -24,6 +31,7 @@ async def get_access_token():
         else:
             raise HTTPException(status_code=auth_response.status_code, detail="Error fetching access token")
 
+@cached(ttl=300, cache=cache)
 async def fetch_spotify_data(url, headers):
     async with httpx.AsyncClient() as client:
         response = await client.get(url, headers=headers)
