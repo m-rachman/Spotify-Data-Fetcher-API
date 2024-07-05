@@ -65,6 +65,10 @@ async def fetch_tracks(playlist_id: str):
         else:
             raise HTTPException(status_code=response.status_code, detail="Error fetching tracks data")
 
+@app.get("/")
+async def get_root():
+    return {"message": "Welcome to Spotify Data Fetcher API"}
+
 @app.get("/top-tracks")
 async def get_top_tracks():
     return await fetch_tracks('37i9dQZEVXbMDoHDwVN2tF')
